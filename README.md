@@ -22,4 +22,4 @@ A simple web app for buying used furniture, air conditioners, and scrap in Jedda
 - Images & icons: `img/`
 
 ## Author
-- Developed by [Your Name] 
+- Developed by Salah Jabreel 
