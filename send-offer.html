@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>قدّم عرضك الآن | قيمة</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.rtl.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <style>body { font-family: Tahoma, system-ui, sans-serif; }</style>
+</head>
+<body class="bg-light">
+  <nav class="navbar navbar-light bg-white shadow-sm mb-4">
+    <div class="container">
+      <a class="navbar-brand fw-bold fs-3 d-flex align-items-center gap-2" href="index.html">
+        <i class="fa-solid fa-gem" style="font-size:32px; color:#17a2b8;"></i> قيمة
+      </a>
+      <a href="send-offer.html" class="btn btn-success">قدّم عرضك الآن</a>
+    </div>
+  </nav>
+  <div class="container my-5">
+    <h1 class="mb-4 text-center">قدّم عرضك الآن</h1>
+    <form id="offerForm" class="bg-white p-4 rounded-3 shadow-sm mx-auto" style="max-width: 600px;">
+      <div class="mb-3">
+        <label for="fullName" class="form-label">الاسم الكامل</label>
+        <input type="text" class="form-control" id="fullName" required>
+      </div>
+      <div class="mb-3">
+        <label for="phone" class="form-label">رقم التواصل (جوال أو واتساب)</label>
+        <input type="tel" class="form-control" id="phone" required pattern="[0-9]{10,15}">
+      </div>
+      <div class="mb-3">
+        <label for="city" class="form-label">المدينة</label>
+        <input type="text" class="form-control" id="city" required>
+      </div>
+      <div class="mb-3">
+        <label for="category" class="form-label">نوع السلعة</label>
+        <select class="form-select" id="category" required>
+          <option value="">اختر نوع السلعة</option>
+          <option>أثاث مستعمل</option>
+          <option>مكيفات</option>
+          <option>أجهزة كهربائية</option>
+          <option>خردة/سكراب</option>
+          <option>معدات مطاعم</option>
+          <option>أثاث فنادق/مستودعات</option>
+          <option>أخرى</option>
+        </select>
+      </div>
+      <div class="mb-3">
+        <label for="description" class="form-label">وصف السلعة</label>
+        <textarea class="form-control" id="description" rows="3" required></textarea>
+      </div>
+      <div class="mb-3">
+        <label for="images" class="form-label">صور السلعة (يمكن اختيار أكثر من صورة)</label>
+        <input class="form-control" type="file" id="images" multiple accept="image/*">
+      </div>
+      <button type="submit" class="btn btn-primary btn-lg w-100">إرسال العرض</button>
+    </form>
+    <div id="confirmation" class="alert alert-success text-center mt-4 d-none">
+      تم إرسال العرض بنجاح! سنقوم بالتواصل معك قريبًا.
+    </div>
+  </div>
+  <a href="https://wa.me/966551514094" class="whatsapp-float" target="_blank" title="تواصل واتساب">
+    <img src="img/whatsapp.svg" alt="واتساب" style="width:60px;">
+  </a>
+  <footer class="text-center py-4 mt-5 bg-white border-top">جميع الحقوق محفوظة &copy; قيمة 2024</footer>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    document.getElementById('offerForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      document.getElementById('offerForm').classList.add('d-none');
+      document.getElementById('confirmation').classList.remove('d-none');
+    });
+  </script>
+</body>
+</html> 

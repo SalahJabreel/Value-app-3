@@ -1,0 +1,12 @@
+.whatsapp-float {
+  position: fixed;
+  bottom: 24px;
+  left: 24px;
+  z-index: 1000;
+  background: none;
+  border: none;
+}
+body {
+  direction: rtl;
+  text-align: right;
+} 
