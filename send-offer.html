@@ -89,9 +89,65 @@
     }
     document.getElementById('attachInput').addEventListener('change', updateSelectedFilesInfo);
     document.getElementById('cameraInput').addEventListener('change', updateSelectedFilesInfo);
-    document.getElementById('offerForm').addEventListener('submit', function(e) {
+
+    document.getElementById('offerForm').addEventListener('submit', async function(e) {
       e.preventDefault();
-      alert('سيتم اضافة الميزة قريبا');
+
+      // جمع البيانات
+      const fullName = document.getElementById('fullName').value;
+      const phone = document.getElementById('phone').value;
+      const city = document.getElementById('city').value;
+      const category = document.getElementById('category').value;
+      const description = document.getElementById('description').value;
+      const attachFiles = document.getElementById('attachInput').files;
+      const cameraFiles = document.getElementById('cameraInput').files;
+
+      // تجهيز البيانات للإرسال
+      const formData = new FormData();
+      formData.append('fullName', fullName);
+      formData.append('phone', phone);
+      formData.append('city', city);
+      formData.append('category', category);
+      formData.append('description', description);
+
+      // إضافة الصور من كلا المصدرين
+      for (const file of attachFiles) {
+        formData.append('images', file);
+      }
+      for (const file of cameraFiles) {
+        formData.append('images', file);
+      }
+
+      // إرسال البيانات إلى API (استبدل الرابط برابط الـ backend الخاص بك)
+      try {
+        await fetch('https://your-backend-api.com/api/offer', {
+          method: 'POST',
+          body: formData
+        });
+      } catch (err) {
+        // يمكن تجاهل الخطأ أو عرض رسالة للمستخدم
+      }
+
+      // تجهيز نص الرسالة للواتساب
+      const waText =
+        `طلب جديد من الموقع:\n` +
+        `الاسم: ${fullName}\n` +
+        `الجوال: ${phone}\n` +
+        `المدينة: ${city}\n` +
+        `النوع: ${category}\n` +
+        `الوصف: ${description}\n` +
+        `عدد الصور المرفقة: ${(attachFiles.length + cameraFiles.length)}`;
+
+      // فتح رابط واتساب مع البيانات (بدون صور)
+      const waUrl = `https://wa.me/966551514094?text=${encodeURIComponent(waText)}`;
+      window.open(waUrl, '_blank');
+
+      // رسالة نجاح
+      alert('تم إرسال بيانات العرض! سيتم التواصل معك عبر واتساب.');
+
+      // إعادة تعيين النموذج
+      document.getElementById('offerForm').reset();
+      updateSelectedFilesInfo();
     });
   </script>
 </body>
